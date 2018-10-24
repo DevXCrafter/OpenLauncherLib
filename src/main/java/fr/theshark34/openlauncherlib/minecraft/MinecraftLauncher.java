@@ -166,6 +166,7 @@ public class MinecraftLauncher
         File libsFolder = new File(directory, folder.getLibsFolder());
         File nativesFolder = new File(directory, folder.getNativesFolder());
         File minecraftJar = new File(directory, folder.getMainJar());
+        File modsFolder = new File(directory, folder.getModsFolder());
 
         if (!assetsFolder.exists() || assetsFolder.listFiles() == null)
             throw new FolderException("Missing/Empty assets folder (" + assetsFolder.getAbsolutePath() + ")");
@@ -175,5 +176,10 @@ public class MinecraftLauncher
             throw new FolderException("Missing/Empty natives folder (" + nativesFolder.getAbsolutePath() + ")");
         else if (!minecraftJar.exists())
             throw new FolderException("Missing main jar (" + minecraftJar.getAbsolutePath() + ")");
+        else if(!modsFolder.exist() && GameTweak().getGameTweak().equals(GameTweak.FORGE)){
+            throw new FolderException("Missing/Empty mods folder (" + modsFolder.getAbsolutePath() + ")");
+        }
     }
+    
+   
 }
